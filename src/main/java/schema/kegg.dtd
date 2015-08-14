@@ -1,0 +1,44 @@
+<?xml encoding="UTF-8"?>
+
+        <!ELEMENT pathway (entry+,relation+)>
+        <!ATTLIST pathway
+                xmlns CDATA #FIXED ''
+                image CDATA #REQUIRED
+                link CDATA #REQUIRED
+                name CDATA #REQUIRED
+                number CDATA #REQUIRED
+                org CDATA #REQUIRED
+                title CDATA #REQUIRED>
+
+        <!ELEMENT entry (graphics)>
+        <!ATTLIST entry
+                xmlns CDATA #FIXED ''
+                id CDATA #REQUIRED
+                link CDATA #REQUIRED
+                name CDATA #REQUIRED
+                type CDATA #REQUIRED>
+
+        <!ELEMENT relation (subtype)+>
+        <!ATTLIST relation
+                xmlns CDATA #FIXED ''
+                entry1 CDATA #REQUIRED
+                entry2 CDATA #REQUIRED
+                type CDATA #REQUIRED>
+
+        <!ELEMENT graphics EMPTY>
+        <!ATTLIST graphics
+                xmlns CDATA #FIXED ''
+                bgcolor CDATA #REQUIRED
+                fgcolor CDATA #REQUIRED
+                height CDATA #REQUIRED
+                name CDATA #REQUIRED
+                type CDATA #REQUIRED
+                width CDATA #REQUIRED
+                x CDATA #REQUIRED
+                y CDATA #REQUIRED>
+
+        <!ELEMENT subtype EMPTY>
+        <!ATTLIST subtype
+                xmlns CDATA #FIXED ''
+                name CDATA #REQUIRED
+                value CDATA #REQUIRED>

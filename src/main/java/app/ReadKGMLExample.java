@@ -4,6 +4,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import schema.Pathway;
+import schema.Relation;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -13,6 +14,7 @@ import javax.xml.parsers.SAXParserFactory;
 import javax.xml.transform.sax.SAXSource;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -47,6 +49,11 @@ public class ReadKGMLExample {
             LOGGER.info("Organism: " + pathway.getOrg());
             LOGGER.info("Number of entries: " + pathway.getEntry().size());
             LOGGER.info("Number of relations: " + pathway.getRelation().size());
+
+            List<Relation> relations = pathway.getRelation();
+            for(Relation relation : relations) {
+                LOGGER.info("Relation: " + relation.getEntry1() + "->" + relation.getEntry2() + "\tType: " + relation.getType());
+            }
 
         } catch (ParserConfigurationException e) {
             e.printStackTrace();

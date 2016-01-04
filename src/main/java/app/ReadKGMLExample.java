@@ -3,6 +3,7 @@ package app;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
+import schema.Entry;
 import schema.Pathway;
 import schema.Relation;
 
@@ -14,6 +15,8 @@ import javax.xml.parsers.SAXParserFactory;
 import javax.xml.transform.sax.SAXSource;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -50,9 +53,14 @@ public class ReadKGMLExample {
             LOGGER.info("Number of entries: " + pathway.getEntry().size());
             LOGGER.info("Number of relations: " + pathway.getRelation().size());
 
+            HashMap<String, String> entries = new LinkedHashMap();
+            for(Entry entry : pathway.getEntry())
+                entries.put(entry.getId(), entry.getName());
+
             List<Relation> relations = pathway.getRelation();
             for(Relation relation : relations) {
-                LOGGER.info("Relation: " + relation.getEntry1() + "->" + relation.getEntry2() + "\tType: " + relation.getType());
+                LOGGER.info("Relation: " + entries.get(relation.getEntry1()) + "->" + entries.get(relation.getEntry2())
+                        + "\tType: " + relation.getType());
             }
 
         } catch (ParserConfigurationException e) {
